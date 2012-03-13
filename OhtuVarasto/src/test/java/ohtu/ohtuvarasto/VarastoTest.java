@@ -27,11 +27,6 @@ public class VarastoTest {
 	assertEquals(0, varasto.getTilavuus(), vertailuTarkkuus);
     }
 
-    @Test
-    public void evilTest() {
-	assertEquals(0, 1);
-    }
-
     // monta samassa, laiskottaa
     @Test
     public void tilavuusSekaSaldoKonstruktori() {
