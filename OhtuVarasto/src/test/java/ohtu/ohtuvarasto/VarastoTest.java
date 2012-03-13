@@ -20,6 +20,49 @@ public class VarastoTest {
     public void setUp() {
         varasto = new Varasto(10);
     }
+
+    @Test
+    public void vaaraTilavuus() {
+	Varasto varasto = new Varasto(-1);
+	assertEquals(0, varasto.getTilavuus(), vertailuTarkkuus);
+    }
+
+    // monta samassa, laiskottaa
+    @Test
+    public void tilavuusSekaSaldoKonstruktori() {
+	varasto = new Varasto(5, 2);
+	assertEquals(5, varasto.getTilavuus(), vertailuTarkkuus);
+	assertEquals(2, varasto.getSaldo(), vertailuTarkkuus);
+	varasto = new Varasto(-2, -2);
+	assertEquals(0, varasto.getTilavuus(), vertailuTarkkuus);
+	assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+	varasto = new Varasto(2, 3);
+	assertEquals(2, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void lisaaVarastoonVirheet() {
+	double temp = varasto.getSaldo();
+	varasto.lisaaVarastoon(-1);
+	assertEquals(temp, varasto.getSaldo(), vertailuTarkkuus);
+	varasto.lisaaVarastoon(20);
+	assertEquals(varasto.getTilavuus(), varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void otaVarastostaVirheet() {
+	double temp = varasto.getSaldo();
+	varasto.otaVarastosta(-1);
+	assertEquals(temp, varasto.getSaldo(), vertailuTarkkuus);
+	varasto.otaVarastosta(5);
+	assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void toStringi() {
+	varasto.toString();
+    }
+
  
     @Test
     public void konstruktoriLuoTyhjanVaraston() {
